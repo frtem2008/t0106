@@ -33,7 +33,7 @@ async function fetchShader(shdURL) {
 export function initGL() {
     addInputListeners();
 
-    const canvas = document.getElementById("an2Canvas");
+    const canvas = document.getElementById("canvas");
     /** @type {WebGLRenderingContext} */
     gl = canvas.getContext("webgl2");
 

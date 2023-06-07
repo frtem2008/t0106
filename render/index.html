@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF_8" />
+        <title>CGSG top</title>
+        <link rel="stylesheet" href="css/styles.css" />
+        <!-- icon in panel -->
+        <link rel="shortcut icon" href="../resources/me.png" type="image/png" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"
+            integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </head>
+
+    <body>
+        <div><h1>AN2 renderer 0.0.1</h1></div>
+        <script type="module">
+            import * as rnd from "./js/render.js";
+
+            window.addEventListener("load", () => {
+                /** @type {render} */
+                let render = new rnd.render();
+
+                render.start();
+            });
+        </script>
+
+        <canvas id="canvas" width="1600" height="1600"></canvas>
+
+        <!-- <input
+            type="range"
+            step="0.2"
+            min="1"
+            max="10"
+            value="1"
+            class="slider"
+            id="scaleSlider"
+        />
+
+        <img src="resources/me.png" />
+        <div id="1">Some text here, for sure</div> -->
+    </body>
+</html>

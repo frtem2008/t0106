@@ -88,14 +88,6 @@ class NotesServer {
       socket.on("EchoToServer", (echoMsg) => {
         Handlers.echoHandler(this, socket, echoMsg);
       });
-
-      socket.on("AddNewNote", (note) => {
-        Handlers.addNotehandler(this, socket, note);
-      });
-
-      socket.on("GetAllNotes", (author) => {
-        Handlers.getAllNotesHandler(this, socket, author);
-      });
     });
   }
 }

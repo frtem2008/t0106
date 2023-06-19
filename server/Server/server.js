@@ -1,9 +1,11 @@
-const WebSocket = require("ws");
+const Client = require("./Online/client.js");
+const UUID = require("uuid");
+const { Server } = require("socket.io");
 
-class Server {
+class ChatServer {
   constructor(server, port) {
-    this.wss = new WebSocket.Server({ server });
-    this.attachCallbacks();
+    this.clients = new Set();
+    this.io = new Server(server);
 
     server.listen(process.env.PORT || port, () => {
       console.log(`Server started on port ${server.address().port} :)`);
@@ -11,30 +13,24 @@ class Server {
   }
 
   attachCallbacks() {
-    this.wss.on("connection", (client) => {
-      this.handleConnect(this, client);
+    this.io.on("connection", (socket) => {
+      console.log(`Client connected with id: ${socket.id}`);
     });
   }
 
-  handleConnect(srv, client) {
-    client.send("Hi there, I am a WebSocket server");
-
-    client.on("message", (msg) => {
-      srv.handleMessage(client, msg);
-    });
-
-    client.on("close", () => {
-      this.handleClose(client);
-    });
+  handleConnection(server, connection) {
+    let client = server.login(server, connection);
   }
 
-  handleMessage = (client, msg) => {
+  login(srv, connection) {}
+
+  handleMessage(client, msg) {
     console.log("Received message from: " + client + " message: " + msg);
-  };
+  }
 
   handleClose(client) {
     console.log("Client disconnected");
   }
 }
 
-module.exports = Server;
+module.exports = ChatServer;

@@ -48,7 +48,7 @@ export async function createProgram(render, gl, vsUrl, fsUrl, result) {
                 );
             }
 
-            result = prog;
+            render.prog = prog;
             console.log("Assigned!");
             console.log("Result is: " + result);
 
